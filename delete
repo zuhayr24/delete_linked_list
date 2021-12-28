@@ -1,0 +1,132 @@
+#include <stdio.h>
+struct node
+{
+    int d;
+    struct node *next;
+}*head;
+typedef struct node node;
+void first()
+{
+   node *tt=head;
+   head=tt->next;
+   
+}
+void end()
+{
+    node *ii,*tt=head;
+    while(tt->next!=NULL)
+    {
+        ii=tt;
+        tt=tt->next;
+        
+    }
+    ii->next=NULL;
+}
+void ran()
+{
+    node *tt=head,*ii;
+    int n;
+    printf("enter number: ");
+    scanf("%d",&n);
+    	while(tt!=NULL)
+    	{
+    	    if(tt->d==n)
+    	    {
+    	        ii->next=tt->next;
+    	        break;
+    	    }
+    	    else
+    	    {
+    	        ii=tt;
+    	        tt=tt->next;
+    	    }
+    	}
+    
+}
+void create()
+{
+    node *dd,*ii;
+    int n,ele;
+    printf("no.of nodes: ");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {
+        printf("element(%d): ",i+1);
+        scanf("%d",&ele);
+        if(i==0)
+        {
+            dd=(node *)malloc(sizeof(node));
+            dd->d=ele;
+            dd->next=NULL;
+            head=dd;
+            ii=head;
+        }
+        else
+        {
+            dd=(node *)malloc(sizeof(node));
+            dd->d=ele;
+            dd->next=NULL;
+            ii->next=dd;
+            ii=ii->next;
+        }
+    }
+}
+void disp()
+{
+    node *dd;
+    dd=head;
+    if(dd!=NULL)
+    {
+        while(dd!=NULL)
+        {
+            printf("%d->",dd->d);
+            dd=dd->next;
+        }
+    }
+    else
+    {
+        printf("empty");
+    }
+}
+int main()
+{
+    int ch;char user[100];
+while(1)
+{
+printf("---------------------------------------------------------\n");
+printf("\t\t C Single Linked list\n");
+printf("---------------------------------------------------------\n");
+printf("\t1. Create\t2. Display\n\t3. first\t4. last\n\n5. random");
+printf("\t\tEnter your choice: ");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+create();
+break;
+case 2:
+disp();
+break;
+case 3:
+first();
+break;
+case 4:
+end();
+break;
+case 5:
+ran();
+break;
+default:
+printf("Invalid Choice\nPlease enter a valid choice between 1-4\n");
+break;
+}
+printf("Do you want to continue?\nPress yes or no: ");
+scanf("%s",user);
+if(strcmp(user,"YES")==0||strcmp(user,"yes")==0||strcmp(user,"Yes")==0)
+continue;
+else
+exit(0);
+    
+}
+return 0;
+}
